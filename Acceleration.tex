@@ -2,8 +2,8 @@
 
 \usepackage[notes,centerfigures,commands,enumerate,environments,theorems,lmrscinnershape]{AVT}
 
-\title{Notes on Acceleration and Hedging in Optimization}
-\author{Alexander Terenin}
+\title{Course Notes on Acceleration\\and Hedging in Optimization}
+\author{Short Course given by Jason Altschuler\\[1ex]Princeton ML Theory Summer School 2024\\[1ex]Notes taken by Alexander Terenin}
 
 \begin{document}
 
@@ -121,9 +121,15 @@ R_n = \inf_{\alpha_0,..,\alpha_{n-1}} \sup_{\substack{m I \leq H \leq M I\\x_0\n
 Understanding this quantity lets us understand non-adaptive step sizes, but which depend on the problem's parameters.
 For $n=1$, we have 
 \[
-R_1 &= \inf_\alpha \sup_{\substack{m I \leq H \leq M I\\x_0\neq x^*}} \frac{\norm{x_1 - x^*}}{\norm{x_0 - x^*}} \o^{(i)}= \inf_\alpha \sup_{\substack{m I \leq H \leq M I\\x_0\neq x^*}} \frac{\norm{(I - \alpha H)(x_0 - x^*)}}{\norm{x_0 - x^*}}
+R_1 &= \inf_\alpha \sup_{\substack{m I \leq H \leq M I\\x_0\neq x^*}} \frac{\norm{x_1 - x^*}}{\norm{x_0 - x^*}} 
 \\
-\o^{(ii)}&= \inf_\alpha \sup_{m I \leq H \leq M I} \norm{I - \alpha H} \o^{(iii)}= \inf_\alpha \sup_{\lambda\in[m,M]} |1 - \alpha\lambda| \o^{(iv)}= \frac{M-m}{M+m}
+\o^{(i)}&= \inf_\alpha \sup_{\substack{m I \leq H \leq M I\\x_0\neq x^*}} \frac{\norm{(I - \alpha H)(x_0 - x^*)}}{\norm{x_0 - x^*}}
+\\
+\o^{(ii)}&= \inf_\alpha \sup_{m I \leq H \leq M I} \norm{I - \alpha H} 
+\\
+&\o^{(iii)}= \inf_\alpha \sup_{\lambda\in[m,M]} |1 - \alpha\lambda| 
+\\
+&\o^{(iv)}= \frac{M-m}{M+m}
 \]
 where (i) is by the gradient descent step identity, (ii) is by definition of an operator norm, (iii) is by the eigenvalue characterization of operator norms, and (iv) is as follows.
 One can see that the resulting min-max problem is easy to solve by drawing a picture, and gives $\alpha^* = \frac{2}{M-m}$ with optimal $\lambda^*$ on the boundary of the interval: plugging this in gives the contraction value.
@@ -148,7 +154,9 @@ Now, we have
 \[
 R_2 &= \inf_{\alpha,\beta} \sup_{\substack{m I \leq H \leq M I\\x_0\neq x^*}} \frac{\norm{(I - \beta H)(I - \alpha H)(x_0 - x^*)}}{\norm{x_0 - x^*}}
 \\
-&= \inf_{\alpha,\beta} \norm{(I - \beta H)(I - \alpha H)} = \inf_{\alpha,\beta} \sup_{\lambda\in[m,M]} |(1-\alpha\lambda)(1-\beta\lambda)|
+&= \inf_{\alpha,\beta} \norm{(I - \beta H)(I - \alpha H)} 
+\\
+&= \inf_{\alpha,\beta} \sup_{\lambda\in[m,M]} |(1-\alpha\lambda)(1-\beta\lambda)|
 .
 \]
 Thus, asking about step sizes $\alpha,\beta$ is equivalent to asking about a polynomial $p$ of degree $2$ such that $p(0) = 1$, where 
@@ -413,9 +421,10 @@ f_i - f_j - \innerprod{g_j}{x_i - x_j} \geq 0
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-Let 
+Consider 
 \[
 f(x) = \max_i f_i + \innerprod{g_i}{x - x_i}
+.
 \]
 \end{proof}
 
